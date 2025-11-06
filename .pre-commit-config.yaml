@@ -1,0 +1,41 @@
+repos:
+  # Ruff - Fast linting, formatting, import sorting, and unused import removal
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.3
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+        exclude: ^tests/
+      - id: ruff-format
+        exclude: ^tests/
+
+  - repo: https://github.com/PyCQA/docformatter
+    rev: v1.7.7
+    hooks:
+      - id: docformatter
+        additional_dependencies: [tomli]
+        args: ["--in-place", "-r", "--config", "pyproject.toml", ".\\"]
+
+  # MyPy - Type checking
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.18.2
+    hooks:
+      - id: mypy
+        args: ["--config-file", "pyproject.toml"]
+        exclude: ^tests/
+        additional_dependencies:
+          - "types-openpyxl"
+          - "types-setuptools"
+          - "pydantic>=1.10.4"
+          - "pytest"
+          - "pythonnet"
+          - "deepdiff"
+          - "polars"
+
+  # Basic hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
