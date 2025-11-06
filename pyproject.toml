@@ -9,11 +9,11 @@ dependencies = []
 
 [dependency-groups]
 lint = [
-    "ruff>=0.3.0",
-    "mypy>=1.0",
-    "pre-commit>=3.0",
-    "bandit>=1.7.0",
-    "docformatter>=1.7.0",
+    "ruff",
+    "mypy",
+    "pre-commit",
+    "bandit",
+    "docformatter",
 ]
 
 [project.scripts]
